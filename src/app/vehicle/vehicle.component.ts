@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import {Vehicle} from './vehicle';
 
-import {Vehicle} from "./vehicle";
+import {VehicleObserver} from './vehicle.observer';
+import {VehicleService} from './vehicle.service';
+
 const CARS: Vehicle[] = [
   { id: 11, content: 'Audi' },
   { id: 12, content: 'Bugatti' },
@@ -14,4 +17,18 @@ const CARS: Vehicle[] = [
 })
 export class VehicleComponent {
   cars = CARS;
+
+  public constructor(vehicleObserver: VehicleObserver, vehicleService: VehicleService) {
+    vehicleObserver.attach(this);
+    vehicleService.getAll().subscribe(vehicleObserver);
+  }
+
+  public setVehicle(vehicle: Vehicle) {
+    this.cars = [vehicle];
+  }
+
+  public setVehicles(vehicles: Vehicle[]) {
+    this.cars = vehicles;
+  }
+
 }

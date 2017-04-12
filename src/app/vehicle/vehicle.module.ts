@@ -1,9 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { VehicleComponent } from './vehicle.component';
+import { VehicleService } from './vehicle.service';
+import { VehicleObserver } from './vehicle.observer';
+import {CommonModule} from '@angular/common';
+
 
 
 @NgModule({
@@ -11,12 +14,12 @@ import { VehicleComponent } from './vehicle.component';
     VehicleComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     FormsModule,
     HttpModule
   ],
   exports: [VehicleComponent],
-  providers: [],
+  providers: [VehicleService, VehicleObserver],
   bootstrap: []
 })
 export class VehicleModule { }
