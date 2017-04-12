@@ -4,3 +4,14 @@
     <b>{{car.id}}:</b> {{car.content}}
   </li>
 </ul>
+
+<div>
+  <strong>vehicles$ has {{(vehicles$ | async)?.length}} items</strong>
+</div>
+<div *ngIf="(vehicles$ | async)?.length>0">
+  <ul class="stored">
+    <li *ngFor="let vehicle of vehicles$ | async">
+      <b>{{vehicle.id}}:</b> {{ vehicle.vehicleId }}
+    </li>
+  </ul>
+</div>

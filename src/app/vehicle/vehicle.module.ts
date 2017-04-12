@@ -8,6 +8,11 @@ import { VehicleObserver } from './vehicle.observer';
 import {CommonModule} from '@angular/common';
 
 
+import {VehiclesEffects} from './effects/vehicle-effects';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
+import {vehicleStoreDataReducer} from './reducers/vehicle-reducer';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +21,10 @@ import {CommonModule} from '@angular/common';
   imports: [
     CommonModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    StoreModule.provideStore(vehicleStoreDataReducer),
+    EffectsModule.run(VehiclesEffects),
+
   ],
   exports: [VehicleComponent],
   providers: [VehicleService, VehicleObserver],
